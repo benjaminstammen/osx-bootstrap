@@ -9,7 +9,7 @@
 # - If installing full Xcode, it's better to install that first from the app
 #   store before running the bootstrap script. Otherwise, Homebrew can't access
 #   the Xcode libraries as the agreement hasn't been accepted yet.
-# - Script heavily based on gist:
+# - Script (and docs) heavily based on gist:
 #   https://gist.github.com/codeinthehole/26b37efa67041e1307db
 #
 echo "Starting bootstrapping"
@@ -23,20 +23,9 @@ fi
 # Update homebrew recipes
 brew update
 
-# Install GNU core utilities (those that come with OS X are outdated)
-brew tap homebrew/dupes
-brew install coreutils
-brew install gnu-sed --with-default-names
-brew install gnu-tar --with-default-names
-brew install gnu-indent --with-default-names
-brew install gnu-which --with-default-names
-brew install gnu-grep --with-default-names
-
-# Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
-brew install findutils
-
 PACKAGES=(
     git
+    gsed
     imagemagick
     jq
     mono
@@ -52,9 +41,6 @@ brew install ${PACKAGES[@]}
 
 echo "Cleaning up..."
 brew cleanup
-
-echo "Installing cask..."
-brew install caskroom/cask/brew-cask
 
 CASKS=(
     chromium
@@ -76,21 +62,15 @@ CASKS=(
 echo "Installing cask apps..."
 brew install --cask ${CASKS[@]}
 
-echo "Installing fonts..."
-brew tap caskroom/fonts
-FONTS=(
-    font-inconsolidata
-    font-roboto
-    font-clear-sans
-)
-brew install --cask ${FONTS[@]}
-
 echo "Configuring OSX..."
 
 # Show filename extensions by default
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 echo "Creating folder structure..."
-[[ ! -d ~/Source ]] && mkdir ~/Wiki
+[[ ! -d ~/Source ]] && mkdir ~/Source
+
+echo "Configuring Firefox..."
+./firefox/set-up-firefox-profile.sh benjamin
 
 echo "Bootstrapping complete"
