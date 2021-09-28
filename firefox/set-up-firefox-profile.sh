@@ -57,6 +57,6 @@ set_firefox_config_value "browser.toolbars.bookmarks.visibility" 'always' "$prof
 # copy custom styles into directory
 # this assumes that this is being run from the repository root
 mkdir -p "$profile_path"/chrome
-cp ./firefox/UserChrome.css "$profile_path"/chrome/UserChrome.css
+cp ./firefox/userChrome.css "$profile_path"/chrome/userChrome.css
 
 # Firefox sync should do the rest. This script does not configure it.
