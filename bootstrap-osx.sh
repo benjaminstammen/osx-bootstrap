@@ -48,14 +48,15 @@ CASKS=(
     godot
     godot-mono
     obsidian
+    intellij-idea
     intellij-idea-ce
     iterm2
     little-snitch
     slack
     spotify
     sublime-text
+    visual-studio-code
     vlc
-    vscodium
     homebrew/cask-versions/firefox-developer-edition
 )
 

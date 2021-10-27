@@ -10,7 +10,7 @@
 # Usage: `./firefox/set-up-firefox-profile.sh your-profile-name`
 #
 firefox="/Applications/Firefox Developer Edition.app/Contents/MacOS/firefox"
-firefox_config_dir="/Users/benjamin/Library/Application Support/Firefox"
+firefox_config_dir="/Users/$USER/Library/Application Support/Firefox"
 
 ##--- Supporting Functions
 
