@@ -17,22 +17,30 @@ echo "Starting bootstrapping"
 # Check for Homebrew, install if we don't have it
 if test ! $(which brew); then
     echo "Installing homebrew..."
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 # Update homebrew recipes
 brew update
 
 PACKAGES=(
+    coreutils
     git
+    gpg
+    graphviz
     gsed
     imagemagick
     jq
-    mono
+    libmemcached
+    maven
     neovim
+    openjdk@8
+    openjdk@11
+    postgresql
     pyenv
     rbenv
     ripgrep
+    rsync
     wget
 )
 
@@ -45,10 +53,7 @@ brew cleanup
 CASKS=(
     chromium
     docker
-    godot
-    godot-mono
     obsidian
-    intellij-idea
     intellij-idea-ce
     iterm2
     little-snitch
@@ -62,6 +67,10 @@ CASKS=(
 
 echo "Installing cask apps..."
 brew install --cask ${CASKS[@]}
+
+echo "Configuring pyenv..."
+pyenv install 3.9.7
+pyenv global 3.9.7
 
 echo "Configuring OSX..."
 
