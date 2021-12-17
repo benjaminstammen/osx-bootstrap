@@ -72,10 +72,17 @@ echo "Configuring pyenv..."
 pyenv install 3.9.7
 pyenv global 3.9.7
 
+echo "Installing oh-my-zsh"
+# Installer is idempotent
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 echo "Configuring OSX..."
+# Some of these commands seem to require a logout to take effect
 
 # Show filename extensions by default
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+# Use 24-hour clock. Apple doesn't seem to allow YYYY-MM-dd :'(
+defaults write com.apple.menuextra.clock DateFormat -string 'EEE MMM d  H:mm'
 
 echo "Creating folder structure..."
 [[ ! -d ~/Source ]] && mkdir ~/Source
